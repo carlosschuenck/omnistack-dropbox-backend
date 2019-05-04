@@ -18,6 +18,15 @@ class BoxController {
     const boxes = await Box.find();
     return res.json(boxes);
   }
+
+  async delete(req, res) {
+    console.log("try delete ", req.params.id);
+
+    Box.findOneAndDelete({ _id: req.params.id }, function(err, res) {
+      if (err) console.error(err);
+    });
+    return res.send("Delete successful!");
+  }
 }
 
 module.exports = new BoxController();

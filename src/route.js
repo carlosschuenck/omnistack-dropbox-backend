@@ -7,11 +7,18 @@ const routes = express.Router();
 const BoxController = require("./controllers/BoxController");
 const FileController = require("./controllers/FileController");
 
+/**
+ * BOX
+ */
 routes.post("/boxes", BoxController.store);
+routes.delete("/boxes/:id", BoxController.delete);
 
 routes.get("/boxes", BoxController.findAll);
 routes.get("/boxes/:id", BoxController.show);
 
+/**
+ * FILE
+ */
 routes.post(
   "/boxes/:id/files",
   multer(multerConfig).single("file"),
